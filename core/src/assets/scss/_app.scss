@@ -1,0 +1,88 @@
+.chapter-container {
+	border-bottom: solid 1px $gray;
+	padding-bottom: 7px;
+	margin: 10px 0;
+	color: $dark;
+
+	.chapter-title {
+		font-weight: bold;
+		font-size: 1.1rem;
+		padding: 10px 0;
+	}
+
+	.chapter-content {
+		max-width: 85%;
+	}
+}
+
+.login {
+	margin-top: 10vh;
+	.login-form {
+		width: 30%;
+		margin: auto;
+
+		@media (max-width: $md) {
+			width: 90%;
+		}
+	}
+}
+
+.sidebar {
+	background-color: $light;
+	width: 200px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	box-shadow: 3px 0 3px 0 #999;
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		a {
+			color: $primary;
+			text-decoration: none;
+		}
+
+		li {
+			div {
+				padding: 20px;
+				transition: 0.3s ease-in-out;
+				&:hover {
+					background-color: $gray;
+					color: $primary;
+				}
+
+				span {
+					margin-left: 10px;
+				}
+			}
+		}
+	}
+}
+
+.active {
+	background-color: $primary;
+	color: $light;
+	transition: 0.3s ease-in-out;
+
+	div {
+		background-color: $gray;
+		color: $primary;
+	}
+}
+
+.main {
+	position: absolute;
+	top: 0px;
+	left: 210px;
+	width: calc(100% - 210px);
+	height: 100%;
+	overflow: auto;
+}
+
+.huge {
+	font-size: 3em;
+	font-weight: 900;
+}

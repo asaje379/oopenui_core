@@ -17,5 +17,5 @@ export default function useStorage(type: 'local' | 'session', key: string) {
         setValue(null);
     }
 
-    return [value, putValue, deleteValue]
+    return { value, set: putValue, clear: deleteValue }
 }

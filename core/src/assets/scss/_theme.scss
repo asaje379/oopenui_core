@@ -1,0 +1,70 @@
+$primary: #2a39c5;
+$light: #f6f4fb;
+$dark: rgb(1, 1, 37);
+$danger: #f20530;
+$success: rgb(12, 88, 12);
+$white: #ffffff;
+$gray: #ccd7e1;
+
+$bg-colors: (
+	primary: $primary,
+	light: $light,
+	dark: $dark,
+	danger: $danger,
+	success: $success,
+	white: $white,
+	gray: $gray
+);
+
+$fg-colors: (
+	primary: $light,
+	light: $primary,
+	dark: $light,
+	danger: $light,
+	success: $light,
+	white: $dark,
+	gray: $dark
+);
+
+@each $key, $val in $bg-colors {
+	.bg-#{$key} {
+		background-color: map-get($bg-colors, $key) !important;
+		color: map-get($fg-colors, $key) !important;
+	}
+
+	.text-#{$key} {
+		color: map-get($map: $bg-colors, $key: $key) !important;
+	}
+
+	.border-#{$key} {
+		border: solid 1px map-get($map: $bg-colors, $key: $key) !important;
+	}
+
+	.hover-#{$key} {
+		&:hover {
+			background-color: map-get($bg-colors, $key) !important;
+			color: map-get($fg-colors, $key) !important;
+		}
+	}
+}
+
+.border {
+	border: solid 1px !important;
+}
+
+.big-text {
+	font-size: 1.5em;
+}
+
+// Breakpoints
+$sm: 500px;
+$md: 1000px;
+
+// General styles
+* {
+	box-sizing: border-box;
+}
+
+.pointer {
+	cursor: pointer;
+}

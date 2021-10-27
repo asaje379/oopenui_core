@@ -1,0 +1,129 @@
+/** CONTAINERS **/
+/****************/
+.container {
+	width: 80%;
+	margin: auto;
+
+	@media (max-width: $md) {
+		width: 87%;
+	}
+
+	@media (max-width: $sm) {
+		width: 91%;
+	}
+}
+
+/** FLEX BOXES **/
+/****************/
+.flex {
+	display: flex;
+}
+
+//Flex direction
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+// Flex wrapping
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+// Justify content
+.jc-flex-start {
+	justify-content: flex-start;
+}
+
+.jc-center {
+	justify-content: center;
+}
+
+.jc-flex-end {
+	justify-content: flex-end;
+}
+
+.jc-stretch {
+	justify-content: stretch;
+}
+
+.jc-space-around {
+	justify-content: space-around;
+}
+
+.jc-space-between {
+	justify-content: space-between;
+}
+
+// Align items
+.ai-flex-start {
+	align-items: flex-start;
+}
+
+.ai-center {
+	align-items: center;
+}
+
+.ai-flex-end {
+	align-items: flex-end;
+}
+
+.ai-space-around {
+	align-items: space-around;
+}
+
+.ai-space-between {
+	align-items: space-between;
+}
+
+// Margins
+$spacings: (0: 0px, 1: 4px, 2: 8px, 3: 12px, 4: 20px, 5: 40px);
+
+@each $key, $val in $spacings {
+	.m-#{$key} {
+		margin: map-get($spacings, $key);
+	}
+	.mt-#{$key} {
+		margin-top: map-get($spacings, $key);
+	}
+	.mr-#{$key} {
+		margin-right: map-get($spacings, $key);
+	}
+	.mb-#{$key} {
+		margin-bottom: map-get($spacings, $key);
+	}
+	.ml-#{$key} {
+		margin-left: map-get($spacings, $key);
+	}
+
+	.p-#{$key} {
+		padding: map-get($spacings, $key);
+	}
+	.pt-#{$key} {
+		padding-top: map-get($spacings, $key);
+	}
+	.pr-#{$key} {
+		padding-right: map-get($spacings, $key);
+	}
+	.pb-#{$key} {
+		padding-bottom: map-get($spacings, $key);
+	}
+	.pl-#{$key} {
+		padding-left: map-get($spacings, $key);
+	}
+}
+
+// Text flow
+$positions: left, center, right, justify;
+@each $var in $positions {
+	.text-#{$var} {
+		text-align: $var;
+	}
+}

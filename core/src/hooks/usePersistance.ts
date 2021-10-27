@@ -31,5 +31,5 @@ export default function usePersistance(key: string) {
         });
     }
 
-    return [loading, value, putValue, deleteValue]
+    return { loading, value, set: putValue, clear: deleteValue }
 }

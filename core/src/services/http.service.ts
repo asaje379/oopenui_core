@@ -1,15 +1,16 @@
-function createConfig(method: string, headers: { [x: string]: string } = { 'Content-Type': 'application/json' }, data?: any) {
+import { tryBloc } from "../utils/utils";
+
+function createConfig(method: string, data?: any, headers: { [x: string]: string } = { 'Content-Type': 'application/json' }) {
     const base: any = { method };
     const lowercaseMethod = method.toLowerCase();
-    if (lowercaseMethod === 'get') {
-        return base;
-    } else {
-        base.headers = headers
-        if (['put', 'post'].includes(method)) {
-            if (!data) throw new Error("Can't post/put empty data!");
-            base.body = JSON.stringify(data);
-        }
+
+    base.headers = headers
+    if (['put', 'post'].includes(lowercaseMethod)) {
+        if (!data) throw new Error("Can't post/put empty data!");
+        base.body = JSON.stringify(data);
     }
+
+    return base;
 }
 
 function createResponse(r: any, responseType: string) {
@@ -28,16 +29,24 @@ function createResponse(r: any, responseType: string) {
 }
 
 export const http = {
-    get: async (url: string, responseType: string = 'json') => {
-        return await fetch(url).then(r => createResponse(r, responseType));
+    get: (url: string, responseType: string = 'json') => {
+        return tryBloc(async () => {
+            return fetch(url).then(r => createResponse(r, responseType));
+        })
     },
-    post: async (url: string, data: any, responseType: string = 'json') => {
-        return await fetch(url, createConfig('POST', data = data)).then(r => createResponse(r, responseType));
+    post: (url: string, data: any, headers: any = { 'Content-Type': 'application/json' }, responseType: string = 'json') => {
+        return tryBloc(async () => {
+            return fetch(url, createConfig('POST', data, headers)).then(r => createResponse(r, responseType));
+        })
     },
-    put: async (url: string, data: any, responseType: string = 'json') => {
-        return await fetch(url, createConfig('PUT', data = data)).then(r => createResponse(r, responseType));
+    put: (url: string, data: any, headers: any = { 'Content-Type': 'application/json' }, responseType: string = 'json') => {
+        return tryBloc(async () => {
+            return fetch(url, createConfig('PUT', data, headers)).then(r => createResponse(r, responseType));
+        })
     },
-    delete: async (url: string, responseType: string = 'json') => {
-        return await fetch(url, createConfig('DELETE')).then(r => createResponse(r, responseType));
+    delete: (url: string, responseType: string = 'json') => {
+        return tryBloc(async () => {
+            return fetch(url, createConfig('DELETE')).then(r => createResponse(r, responseType));
+        })
     }
 };
